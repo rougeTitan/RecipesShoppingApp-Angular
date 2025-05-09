@@ -1,27 +1,65 @@
-# FirstApp
+# Angular 16 Feature Demonstration App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
+This project is a comprehensive demonstration of **Angular 16** features integrated with **Google Firebase** as the backend. It covers various core and advanced concepts of Angular in a real-world context, ideal for learning or reference purposes.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Features Covered
 
-## Code scaffolding
+### ✅ Angular 16 Highlights
+- Standalone Components
+- Signals (reactive primitives)
+- Control Flow Syntax (`@if`, `@for`)
+- Typed Reactive Forms
+- HttpClient and Interceptors
+- Dependency Injection and Providers
+- Lazy Loading & Route Configuration
+- State Management with Signals
+- Unit Testing & Component Testing
+- Material UI Integration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 🔥 Firebase Integration
+- Firebase Authentication (Email/Password, Google Sign-In)
+- Firestore Realtime Database
+- Firebase Hosting
+- Firebase Functions (Optional)
+- Cloud Storage
+- Firebase Security Rules
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📦 Tech Stack
 
-## Running unit tests
+- **Frontend**: Angular 16, TypeScript, Angular Material, RxJS
+- **Backend**: Firebase (Auth, Firestore, Storage, Hosting)
+- **Dev Tools**: Angular CLI, Prettier, ESLint
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🛠️ Installation & Setup
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- Angular CLI (`npm install -g @angular/cli`)
+- Firebase CLI (`npm install -g firebase-tools`)
 
-## Further help
+### Clone the Repository
+```bash
+git clone https://github.com/yourusername/angular16-demo-app.git
+cd angular16-demo-app
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Install Dependencies
+npm install
+
+## Run Locally
+npm start 
+ng serve
+
+## 🙌 Contributing
+Contributions, issues and feature requests are welcome!
+Feel free to check the issues page.
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
