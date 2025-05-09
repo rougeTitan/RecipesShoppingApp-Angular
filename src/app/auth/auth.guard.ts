@@ -15,7 +15,6 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  //takes two arguments
   canActivate(
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
@@ -25,7 +24,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | Observable<boolean | UrlTree> {
     return this.authService.user.pipe(
-      //using to avoid the race condition between multiple routes
       take(1),
       map(user => {
         const isAuth = !!user;

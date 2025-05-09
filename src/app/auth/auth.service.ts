@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Observable} from 'rxjs';
+
 import { User } from './user.model';
 
-//setting respose structure. You can find the fields in 
-//auth api documentation based on which api you want to use
-//follow the resposne section of that api
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -22,20 +18,15 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
-  //BehaviorSubject - can give you access to the past events 
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  //injecting http client
-  constructor(private http: HttpClient,private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        //you must change the key
-        //make sure your url is correct as sometimes google changes its format
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+ environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJgxWigPdJnrv0eLy11I2ejTneFnYqOMw',
         {
           email: email,
           password: password,
@@ -58,7 +49,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key='+ environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJgxWigPdJnrv0eLy11I2ejTneFnYqOMw',
         {
           email: email,
           password: password,
@@ -79,7 +70,6 @@ export class AuthService {
   }
 
   autoLogin() {
-    //retriving user data if its exist
     const userData: {
       email: string;
       id: string;
@@ -106,7 +96,7 @@ export class AuthService {
     }
   }
 
-  logout(){
+  logout() {
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
@@ -122,7 +112,6 @@ export class AuthService {
     }, expirationDuration);
   }
 
-
   private handleAuthentication(
     email: string,
     userId: string,
@@ -133,11 +122,9 @@ export class AuthService {
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
-    //using local storage
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
-  //handling error cases
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
