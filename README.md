@@ -63,3 +63,55 @@ Feel free to check the issues page.
 ## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+---
+
+## 🔗 API Endpoints & Firebase Usage
+
+### Firebase Project
+- **Project ID:** recipe-book-project-78350
+- **Realtime Database URL:** https://recipe-book-project-78350-default-rtdb.firebaseio.com/
+
+### Authentication
+- **Signup Endpoint:**
+  - `POST https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=YOUR_API_KEY`
+- **Login Endpoint:**
+  - `POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=YOUR_API_KEY`
+- **Auth Payload:**
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "yourpassword",
+    "returnSecureToken": true
+  }
+  ```
+- **Token Usage:**
+  - After login/signup, use the returned `idToken` as a query param `?auth=ID_TOKEN` for all database requests.
+
+### Recipes Data
+- **Store Recipes (per user):**
+  - `PUT https://recipe-book-project-78350-default-rtdb.firebaseio.com/recipes/{userId}.json?auth=ID_TOKEN`
+- **Fetch Recipes (per user):**
+  - `GET https://recipe-book-project-78350-default-rtdb.firebaseio.com/recipes/{userId}.json?auth=ID_TOKEN`
+- Each user's recipes are stored under their unique user ID node in the database.
+
+### Example Firebase Rules (Production)
+```json
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+```
+
+---
+
+## 📝 How to Use Firebase in This App
+1. **Sign up or log in using the app's authentication form.**
+2. **Add or edit recipes.**
+3. **Click 'Manage' > 'Save Data' to store your recipes in Firebase.**
+4. **Each user only sees and manages their own recipes.**
+5. **All requests to the database require a valid Firebase ID token.**
+
+---
+
